@@ -26,3 +26,8 @@ public interface ICreate<T>
 {
     public T Create();
 }
+
+public interface ISqlRaw
+{
+    
+}
