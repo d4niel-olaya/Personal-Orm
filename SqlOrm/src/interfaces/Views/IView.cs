@@ -1,7 +1,7 @@
 using System;
 
 
-namespace SqlOrm.SqlView;
+namespace SqlOrm.Interfaces.SqlView;
 
 public interface ISqlView
 {

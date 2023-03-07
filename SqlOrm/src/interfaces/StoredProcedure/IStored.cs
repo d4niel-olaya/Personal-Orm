@@ -1,7 +1,7 @@
 using System;
 
 
-namespace SqlOrm.StoredProcedure;
+namespace SqlOrm.Interfaces.StoredProcedure;
 
 public interface IStoredProcedure
 {

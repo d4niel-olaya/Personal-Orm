@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 
-namespace SqlOrm.Query;
+namespace SqlOrm.Interfaces.Query;
 
 
 public interface IRead<T>

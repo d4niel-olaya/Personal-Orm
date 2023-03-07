@@ -1,7 +1,7 @@
 using System;
 
 
-namespace SqlOrm.Connection;
+namespace SqlOrm.Interfaces.Connection;
 public interface IConnection
 {
     string _state {get;}
