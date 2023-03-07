@@ -31,3 +31,5 @@ public interface ISqlRaw
 {
     
 }
+
+public interface IEditable<T> : IUpdate<T>, ICreate<T>, IDelete<T>{}
