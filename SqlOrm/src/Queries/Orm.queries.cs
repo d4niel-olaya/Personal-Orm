@@ -7,3 +7,9 @@ namespace SqlOrm.Queries;
 public abstract class Query {
 
 }
+
+public partial class QueryBuilder
+{
+
+}
+
