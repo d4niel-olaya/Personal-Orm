@@ -7,22 +7,22 @@ public class OrmConnection : IConnection
     private readonly string _state;
 
 
-    public void Open()
+    public virtual void Open()
     {
 
     }
 
-    public void Close()
+    public virtual void Close()
     {
 
     }
 
-    public bool IsOpen()
+    public virtual bool IsOpen()
     {
         return true;
     }
 
-    public string State()
+    public virtual string State()
     {
         return "Up";
     }
