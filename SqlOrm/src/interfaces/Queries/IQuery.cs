@@ -4,32 +4,32 @@ using System.Collections;
 namespace SqlOrm.Interfaces.Query;
 
 
-public interface IRead<T>
+internal interface IRead<T>
 {
     public IEnumerable<T> GetAll();
 
     public T GetOne();
 }
 
-public interface IDelete<T>
+internal interface IDelete<T>
 {
     public T Deleted();
 }
 
-public interface IUpdate<T>
+internal interface IUpdate<T>
 {
     public T Update();
 }
 
 
-public interface ICreate<T>
+internal interface ICreate<T>
 {
     public T Create();
 }
 
-public interface ISqlRaw
+internal interface ISqlRaw
 {
     
 }
 
-public interface IEditable<T> : IUpdate<T>, ICreate<T>, IDelete<T>{}
+internal interface IEditable<T> : IUpdate<T>, ICreate<T>, IDelete<T>{}

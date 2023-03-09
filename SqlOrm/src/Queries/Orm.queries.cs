@@ -3,12 +3,11 @@ using SqlOrm.Interfaces.Query;
 
 namespace SqlOrm.Queries;
 
-
-public abstract class Query {
+internal abstract class Query {
 
 }
 
-public partial class QueryBuilder
+internal partial class QueryBuilder
 {
 
 }
