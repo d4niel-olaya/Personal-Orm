@@ -2,7 +2,7 @@ using System;
 
 
 namespace SqlOrm.Interfaces.Connection;
-public interface IConnection
+internal interface IConnection
 {
     string _state {get;}
     void Open();

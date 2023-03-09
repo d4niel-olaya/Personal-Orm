@@ -2,7 +2,7 @@
 using SqlOrm.Interfaces.Connection;
 namespace SqlOrm.Connection;
 
-public class OrmConnection : IConnection
+internal class OrmConnection : IConnection
 {
     private readonly string _state;
 
