@@ -1,30 +1,47 @@
 
 using SqlOrm.Interfaces.Connection;
+using System.Data.SqlClient;
+using System.Data.Common;
+using System.Data;
 namespace SqlOrm.Connection;
 
-internal class OrmConnection : IConnection
+public class OrmConnection : IConnection
 {
     private readonly string _state;
 
+    private readonly DbConnection _client;
+
+    public OrmConnection(string strConnection)
+    {
+        _client = new SqlConnection(strConnection);
+    }
 
     public virtual void Open()
     {
+        if(_client.State != ConnectionState.Open)
+        {
+            _client.Open();
+        }
+        Console.WriteLine(_client.State);
 
     }
 
     public virtual void Close()
     {
-
+        if(_client.State != ConnectionState.Closed)
+        {
+            _client.Close();
+        }
     }
 
     public virtual bool IsOpen()
     {
-        return true;
+        return ConnectionState.Open ? true : false;
     }
 
     public virtual string State()
     {
-        return "Up";
+        return _client.State.ToString();
     }
 
 }

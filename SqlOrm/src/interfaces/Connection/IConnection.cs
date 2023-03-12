@@ -2,9 +2,8 @@ using System;
 
 
 namespace SqlOrm.Interfaces.Connection;
-internal interface IConnection
+public interface IConnection
 {
-    string _state {get;}
     void Open();
 
     bool IsOpen();
