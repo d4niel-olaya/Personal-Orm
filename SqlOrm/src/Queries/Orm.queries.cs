@@ -1,14 +1,14 @@
 using SqlOrm.Interfaces.Query;
-
+using System.Collections;
+using System.Data.Common;
 
 namespace SqlOrm.Queries;
 
-internal abstract class Query {
-
-}
-
-internal partial class QueryBuilder
+public partial class QueryBuilder<T, DbCommand> : IEditable<T>
 {
-
+    public virtual IEnumerable<T> GetAll()
+    {
+        
+    }
 }
 

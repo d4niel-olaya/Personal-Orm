@@ -32,4 +32,4 @@ internal interface ISqlRaw
     
 }
 
-internal interface IEditable<T> : IUpdate<T>, ICreate<T>, IDelete<T>{}
+internal interface IEditable<T, TCommand> : IUpdate<T>, ICreate<T>, IDelete<T>{}
