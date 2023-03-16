@@ -5,7 +5,7 @@ using System.Data.Common;
 using System.Data;
 namespace SqlOrm.Connection;
 
-public class OrmConnection : IConnection<DbConnection>
+public class OrmConnection : IClient
 {
     private readonly string _state;
 

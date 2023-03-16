@@ -1,5 +1,6 @@
 using System;
 using System.Data.Common;
+using System.Data;
 
 namespace SqlOrm.Interfaces.Connection;
 public interface IConnection<T> where T : DbConnection
@@ -14,3 +15,5 @@ public interface IConnection<T> where T : DbConnection
 
     void Close();
 }
+
+public interface IClient : IConnection<SqlConnection>{}
