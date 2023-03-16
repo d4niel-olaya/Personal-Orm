@@ -8,6 +8,7 @@ public partial class QueryBuilder<T, DbCommand> : IEditable<T>
 {
     public virtual IEnumerable<T> GetAll()
     {
+        string query = $"SELECT * FROM {T.ToString()}";
         
     }
 }

@@ -5,11 +5,16 @@ using System.Data.Common;
 using System.Data;
 namespace SqlOrm.Connection;
 
-public class OrmConnection : IConnection
+public class OrmConnection : IConnection<DbConnection>
 {
     private readonly string _state;
 
     private readonly DbConnection _client;
+
+    public DbConnection getClient()
+    {
+        return _client;
+    }
 
     public OrmConnection(string strConnection)
     {
