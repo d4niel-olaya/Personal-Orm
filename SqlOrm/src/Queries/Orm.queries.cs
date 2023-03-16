@@ -6,7 +6,7 @@ using System.Data.Common;
 
 namespace SqlOrm.Queries;
 
-public partial class QueryBuilder<T, DbCommand> : IEditable<T>
+public partial class QueryBuilder<T, TDbCommand> : IEditable<T> where TDbCommand : DbCommand
 {
 
     private readonly IClient _clientConnection;
@@ -18,7 +18,8 @@ public partial class QueryBuilder<T, DbCommand> : IEditable<T>
     public virtual IEnumerable<T> GetAll()
     {
         string query = $"SELECT * FROM {T.ToString()}";
-
+        var command = new TDbCommand(query,_clientConnection.getClient);
+        
     }
 }
 
