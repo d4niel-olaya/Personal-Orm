@@ -6,19 +6,34 @@ using System.Data.Common;
 
 namespace SqlOrm.Queries;
 
-public partial class QueryBuilder<T, TDbCommand> : IEditable<T> where TDbCommand : DbCommand
+
+public class QueryClient : IQueryClient
+{
+    public void Read()
+    {
+        
+    }
+
+    public void Insert()
+    {
+
+    }
+}
+public partial class QueryBuilder : IEditable<T>
 {
 
-    private readonly IClient _clientConnection;
+    private readonly IClient _connectionClient;
+
+    private readonly IQueryClient _queryClient;
 
     public QueryBuilder()
     {
-        _clientConnection = new OrmConnection("Server=Localhost\\SQLEXPRESS; Database=StudyApp; Trusted_Connection=True;");
+        _connectionClient = new OrmConnection("Server=Localhost\\SQLEXPRESS; Database=StudyApp; Trusted_Connection=True;");
     }
     public virtual IEnumerable<T> GetAll()
     {
         string query = $"SELECT * FROM {T.ToString()}";
-        var command = new TDbCommand(query,_clientConnection.getClient);
+        var command = new TDbCommand(query, _connectionClient.getClient);
         
     }
 }
