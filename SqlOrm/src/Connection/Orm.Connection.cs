@@ -9,9 +9,9 @@ public class OrmConnection : IClient
 {
     private readonly string _state;
 
-    private readonly DbConnection _client;
+    private readonly SqlConnection _client;
 
-    public DbConnection getClient()
+    public SqlConnection getClient()
     {
         return _client;
     }
@@ -41,7 +41,11 @@ public class OrmConnection : IClient
 
     public virtual bool IsOpen()
     {
-        return ConnectionState.Open ? true : false;
+        if(ConnectionState.Open = 1)
+        {
+            return true;
+        }
+        return false;
     }
 
     public virtual string State()

@@ -10,13 +10,13 @@ namespace SqlOrm.Queries;
 
 public class QueryClient : IQueryClient
 {
-    public void Read(IClient client, string query)
+    public string Read(IClient client, string query)
     {
-        using(client.getClient)
+        using(client.getClient())
         {
             var command = new SqlCommand();
             command.CommandText = query;
-            command.Connection = client.getClient;
+            command.Connection = client.getClient();
             client.Open();
             var reader = command.ExecuteReader();
             while(reader.Read())
@@ -32,7 +32,7 @@ public class QueryClient : IQueryClient
 
     }
 }
-public partial class QueryBuilder : IEditable<T>
+public partial class QueryBuilder : IEditable<string>
 {
 
     private readonly IClient _connectionClient;
@@ -42,12 +42,14 @@ public partial class QueryBuilder : IEditable<T>
     public QueryBuilder()
     {
         _connectionClient = new OrmConnection("Server=Localhost\\SQLEXPRESS; Database=StudyApp; Trusted_Connection=True;");
+        _queryClient = new QueryClient();
     }
-    public virtual IEnumerable<T> GetAll()
+    public virtual IEnumerable<string> GetAll()
     {
         string query = $"SELECT * FROM {T.ToString()}";
-        var command = new TDbCommand(query, _connectionClient.getClient);
-        
+        var result = new List<string>();
+        result.Add(_queryClient.Read(_connectionClient, "SELECT 'HOLA MUNDO' as Mensaje"));
+        return result;
     }
 }
 

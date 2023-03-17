@@ -3,6 +3,7 @@ using System.Collections;
 using System.Data;
 using System.Data.Common;
 using SqlOrm.Interfaces.Connection;
+using System.Data.SqlClient;
 
 namespace SqlOrm.Interfaces.Query;
 
@@ -11,7 +12,7 @@ internal interface IRead<T>
 {
     public IEnumerable<T> GetAll();
 
-    public T GetOne();
+    // public T GetOne();
 }
 
 internal interface IDelete<T>
@@ -35,13 +36,13 @@ internal interface ISqlRaw
     
 }
 
-internal interface IEditable<T, TCommand> : IUpdate<T>, ICreate<T>, IDelete<T>{}
+internal interface IEditable<T> :  IRead<T>{}
 
 
 internal interface IQuerys<TCommand, TReader, TParameter> where TCommand : DbCommand 
     where TReader : DbDataReader where TParameter : DbParameter
 {
-    void Read(IClient client, string query);
+    string Read(IClient client, string query);
 
     void Insert(IClient client, string query);
 }
