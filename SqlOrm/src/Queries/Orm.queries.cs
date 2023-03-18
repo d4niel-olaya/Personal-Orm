@@ -63,8 +63,6 @@ public class QueryClient : IQueryClient
 public partial class QueryBuilder : IRead<string>
 {
 
-    // private readonly IClient _connectionClient;
-
     private readonly IQueryClient _queryClient;
 
     public QueryBuilder()

@@ -46,4 +46,5 @@ internal interface IQuerys<TCommand, TReader, TParameter, TClient> where TComman
     void Insert(string query);
 }
 
+
 internal interface IQueryClient : IQuerys<SqlCommand, SqlDataReader, SqlParameter, IClient>{}
