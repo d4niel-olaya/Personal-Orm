@@ -41,7 +41,7 @@ public class OrmConnection : IClient
 
     public virtual bool IsOpen()
     {
-        if(ConnectionState.Open = 1)
+        if(ConnectionState.Open.ToString() == "1")
         {
             return true;
         }
