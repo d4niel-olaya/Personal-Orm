@@ -8,8 +8,36 @@ using System.Data.SqlClient;
 namespace SqlOrm.Queries;
 
 
-public class QueryClient
+public class QueryClient : IQueryClient
 {
+
+    private readonly IClient _connectionClient;
+
+    public QueryClient()
+    {
+        _connectionClient = new OrmConnection("Server=Localhost\\SQLEXPRESS; Database=StudyApp; Trusted_Connection=True;");
+    }
+
+    public void Read(string query)
+    {
+        using(_connectionClient.getClient())
+        {
+            var command = new SqlCommand(query, _connectionClient.getClient());
+            _connectionClient.Open();
+            var reader = command.ExecuteReader();
+            while(reader.Read())
+            {
+               Console.WriteLine(reader.GetString(0));
+            }
+            _connectionClient.Close();
+            
+        }
+    }
+
+    public void Insert(string query)
+    {
+        Console.WriteLine("This is my query");
+    }
     // public string Read(IClient client, string query)
     // {
     //     using(client.getClient())
@@ -32,24 +60,22 @@ public class QueryClient
 
     // }
 }
-public partial class QueryBuilder 
+public partial class QueryBuilder : IRead<string>
 {
 
     // private readonly IClient _connectionClient;
 
-    // private readonly IQueryClient _queryClient;
+    private readonly IQueryClient _queryClient;
 
-    // public QueryBuilder()
-    // {
-    //     _connectionClient = new OrmConnection("Server=Localhost\\SQLEXPRESS; Database=StudyApp; Trusted_Connection=True;");
-    //     _queryClient = new QueryClient();
-    // }
-    // public virtual IEnumerable<string> GetAll()
-    // {
-    //     string query = $"SELECT * FROM {T.ToString()}";
-    //     var result = new List<string>();
-    //     result.Add(_queryClient.Read(_connectionClient, "SELECT 'HOLA MUNDO' as Mensaje"));
-    //     return result;
-    // }
+    public QueryBuilder()
+    {
+        _queryClient = new QueryClient();
+    }
+    public virtual IEnumerable<string> GetAll()
+    {
+        var result = new List<string>();
+        _queryClient.Read("SELECT 'HOLA MUNDO' as Mensaje");
+        return result;
+    }
 }
 

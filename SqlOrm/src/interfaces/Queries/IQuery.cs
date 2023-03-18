@@ -36,15 +36,14 @@ internal interface ISqlRaw
     
 }
 
-internal interface IEditable<T> :  IRead<T>{}
 
 
-internal interface IQuerys<TCommand, TReader, TParameter> where TCommand : DbCommand 
+internal interface IQuerys<TCommand, TReader, TParameter, TClient> where TCommand : DbCommand 
     where TReader : DbDataReader where TParameter : DbParameter
 {
-    string Read(IClient client, string query);
-
-    void Insert(IClient client, string query);
+    void Read(string query);
+ 
+    void Insert(string query);
 }
 
-internal interface IQueryClient : IQuerys<SqlCommand, SqlDataReader, SqlParameter>{}
+internal interface IQueryClient : IQuerys<SqlCommand, SqlDataReader, SqlParameter, IClient>{}
