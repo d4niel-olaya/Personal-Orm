@@ -27,8 +27,12 @@ public class QueryClient : IQueryClient
             var reader = command.ExecuteReader();
             while(reader.Read())
             {
-               Console.WriteLine(reader.GetString(0));
+                for(var i = 0; i < reader.FieldCount; i++)
+                {
+                    Console.WriteLine(reader[i].ToString());
+                }
             }
+            Console.WriteLine(reader.FieldCount.ToString());
             _connectionClient.Close();
             
         }
@@ -72,7 +76,7 @@ public partial class QueryBuilder : IRead<string>
     public virtual IEnumerable<string> GetAll()
     {
         var result = new List<string>();
-        _queryClient.Read("SELECT 'HOLA MUNDO' as Mensaje");
+        _queryClient.Read("SELECT 'HOLA MUNDO' as Mensaje, 2+2 as Suma");
         return result;
     }
 }
