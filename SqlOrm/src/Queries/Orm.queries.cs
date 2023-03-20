@@ -18,21 +18,22 @@ public class QueryClient : IQueryClient
         _connectionClient = new OrmConnection("Server=Localhost\\SQLEXPRESS; Database=StudyApp; Trusted_Connection=True;");
     }
 
-    public void Read(string query)
+    public IEnumerable<string> Read(string query)
     {
         using(_connectionClient.getClient())
         {
             var command = new SqlCommand(query, _connectionClient.getClient());
+            var list = new List<string>();
             _connectionClient.Open();
             var reader = command.ExecuteReader();
             while(reader.Read())
             {
                 for(var i = 0; i < reader.FieldCount; i++)
                 {
-                    Console.WriteLine(reader[i].ToString());
+                    list.Add(reader[i].ToString());
                 }
             }
-            Console.WriteLine(reader.FieldCount.ToString());
+            return list;
             _connectionClient.Close();
             
         }
@@ -76,7 +77,11 @@ public partial class QueryBuilder : IRead<string>
     public virtual IEnumerable<string> GetAll()
     {
         var result = new List<string>();
-        _queryClient.Read("SELECT 'HOLA MUNDO' as Mensaje, 2+2 as Suma");
+        var query = _queryClient.Read("SELECT 'HOLA MUNDO' as Mensaje, 2+2 as Suma");
+        foreach(var row in query)
+        {
+            Console.WriteLine(row);
+        }
         return result;
     }
 }

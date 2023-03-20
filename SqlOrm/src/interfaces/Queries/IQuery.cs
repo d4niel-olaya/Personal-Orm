@@ -38,13 +38,13 @@ internal interface ISqlRaw
 
 
 
-internal interface IQuerys<TCommand, TReader, TParameter, TClient> where TCommand : DbCommand 
+internal interface IQuerys<TCommand, TReader, TParameter, TClient, TResult> where TCommand : DbCommand 
     where TReader : DbDataReader where TParameter : DbParameter
 {
-    void Read(string query);
+    TResult Read(string query);
  
     void Insert(string query);
 }
 
 
-internal interface IQueryClient : IQuerys<SqlCommand, SqlDataReader, SqlParameter, IClient>{}
+internal interface IQueryClient : IQuerys<SqlCommand, SqlDataReader, SqlParameter, IClient, IEnumerable<string>>{}
