@@ -41,7 +41,10 @@ public class QueryClient : IQueryClient
 
     public void Insert(string query)
     {
-        Console.WriteLine("This is my query");
+        var command = new SqlCommand(query, _connectionClient.getClient());
+        _connectionClient.Open();
+        command.ExecuteNonQuery();
+        _connectionClient.Close();
     }
 
 }
