@@ -43,27 +43,7 @@ public class QueryClient : IQueryClient
     {
         Console.WriteLine("This is my query");
     }
-    // public string Read(IClient client, string query)
-    // {
-    //     using(client.getClient())
-    //     {
-    //         var command = new SqlCommand();
-    //         command.CommandText = query;
-    //         command.Connection = client.getClient();
-    //         client.Open();
-    //         var reader = command.ExecuteReader();
-    //         while(reader.Read())
-    //         {
-    //             return reader.GetString(0);
-    //         }
-    //         client.Close();
-    //     }
-    // }
 
-    // public void Insert(IClient client, string query)
-    // {
-
-    // }
 }
 public partial class QueryBuilder : IRead<string>
 {
@@ -84,5 +64,6 @@ public partial class QueryBuilder : IRead<string>
         }
         return result;
     }
+
 }
 
