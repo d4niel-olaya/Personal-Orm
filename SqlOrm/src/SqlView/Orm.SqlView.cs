@@ -4,8 +4,10 @@ using SqlOrm.Interfaces.SqlView;
 
 namespace SqlOrm.SqlView;
 
-    internal abstract class OrmView
+    public abstract class OrmView
     {
+        public abstract void Create();
 
-    }
+        public abstract string Schema();
+    }   
 
