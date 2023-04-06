@@ -51,7 +51,7 @@ public class QueryClient : IQueryClient
 
 public class QueryUtils<T>
 {
-    public static IEnumerable<T> Read(string query, string connection)
+    public static IEnumerable<T> Read(string query, string connection, IEnumerable<int> Campos)
     {
         using(var conexion = new SqlConnection(connection))
         {
@@ -59,9 +59,11 @@ public class QueryUtils<T>
             var list = new List<T>();
             conexion.Open();
             var reader = comando.ExecuteReader();
+            var count = 0;
             while(reader.Read())
             {
-                // reading fields
+                list.Add(reader.GetFieldValue<T>(count));
+                count++;
             }
             conexion.Close();
             return list;
