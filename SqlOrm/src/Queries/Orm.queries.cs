@@ -48,6 +48,27 @@ public class QueryClient : IQueryClient
     }
 
 }
+
+public class QueryUtils<T>
+{
+    public static IEnumerable<T> Read(string query, string connection)
+    {
+        using(var conexion = new SqlConnection(connection))
+        {
+            var comando = new SqlCommand(query, conexion);
+            var list = new List<T>();
+            conexion.Open();
+            var reader = comando.ExecuteReader();
+            while(reader.Read())
+            {
+                // reading fields
+            }
+            conexion.Close();
+            return list;
+
+        }
+    }   
+}
 public partial class QueryBuilder : IRead<string>
 {
 
