@@ -1,0 +1,5 @@
+
+
+namespace SqlOrm.Interfaces.Command;
+
+

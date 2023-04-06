@@ -4,6 +4,7 @@ using SqlOrm.Connection;
 using System.Collections;
 using System.Data.Common;
 using System.Data.SqlClient;
+using SqlOrm.Command;
 
 namespace SqlOrm.Queries;
 
@@ -51,21 +52,24 @@ public class QueryClient : IQueryClient
 
 public class QueryUtils<T>
 {
-    public static IEnumerable<T> Read(string query, string connection, IEnumerable<int> Campos)
+
+
+    public static IEnumerable<T> Read(string query,string connection, IEnumerable<int> Campos)
     {
-        using(var conexion = new SqlConnection(connection))
+        IClient _connection = new OrmConnection(connection);
+        using(_connection.getClient())
         {
-            var comando = new SqlCommand(query, conexion);
+            var comando = new SqlOrmCommand(query, _connection);
             var list = new List<T>();
-            conexion.Open();
-            var reader = comando.ExecuteReader();
+            _connection.Open();
+            var reader = comando.getReader();
             var count = 0;
             while(reader.Read())
             {
                 list.Add(reader.GetFieldValue<T>(count));
                 count++;
             }
-            conexion.Close();
+            _connection.Close();
             return list;
 
         }
