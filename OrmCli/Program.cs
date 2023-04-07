@@ -1,4 +1,4 @@
-﻿using SqlOrm;
+﻿using SqlOrm.Connection;
 using SqlOrm.Queries;
 using System;
 
@@ -8,9 +8,10 @@ Console.WriteLine(SqlOrm.Class1.Db());
 var query = new QueryBuilder();
 query.GetAll();
 var fields = new List<int>(){0};
-var result = QueryUtils<int>.Read("SELECT 1 as Mensaje", "Server=Localhost\\SQLEXPRESS; Database=StudyApp; Trusted_Connection=True;",fields);
+var result = new SqlOrm.Crud.SqlCrud<int>(new OrmConnection("Server=Localhost\\SQLEXPRESS; Database=StudyApp; Trusted_Connection=True;"));
 
-foreach(var i in result)
+var list = result.GetAll("SELECT 2+2 AS number");
+foreach(var i in list)
 {
     Console.WriteLine(i);
 }
