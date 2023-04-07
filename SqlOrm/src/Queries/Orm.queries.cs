@@ -53,7 +53,6 @@ public class QueryClient : IQueryClient
 public class QueryUtils<T>
 {
 
-
     public static IEnumerable<T> Read(string query,string connection, IEnumerable<int> Campos)
     {
         IClient _connection = new OrmConnection(connection);
@@ -73,7 +72,12 @@ public class QueryUtils<T>
             return list;
 
         }
-    }   
+    }  
+
+    public static void Insert()
+    {
+
+    } 
 }
 public partial class QueryBuilder : IRead<string>
 {

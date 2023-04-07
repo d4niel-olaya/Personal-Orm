@@ -8,37 +8,37 @@ using System.Data.SqlClient;
 namespace SqlOrm.Interfaces.Query;
 
 
-internal interface IRead<T>
+public interface IRead<T>
 {
     public IEnumerable<T> GetAll();
 
     // public T GetOne();
 }
 
-internal interface IDelete<T>
+public  interface IDelete<T>
 {
     public T Deleted();
 }
 
-internal interface IUpdate<T>
+public interface IUpdate<T>
 {
     public T Update();
 }
 
 
-internal interface ICreate<T>
+public interface ICreate<T>
 {
     public T Create();
 }
 
-internal interface ISqlRaw
+public interface ISqlRaw
 {
     
 }
 
 
 
-internal interface IQuerys<TCommand, TReader, TParameter, TClient, TResult> where TCommand : DbCommand 
+public interface IQuerys<TCommand, TReader, TParameter, TClient, TResult> where TCommand : DbCommand 
     where TReader : DbDataReader where TParameter : DbParameter
 {
     TResult Read(string query);
@@ -47,4 +47,4 @@ internal interface IQuerys<TCommand, TReader, TParameter, TClient, TResult> wher
 }
 
 
-internal interface IQueryClient : IQuerys<SqlCommand, SqlDataReader, SqlParameter, IClient, IEnumerable<string>>{}
+public interface IQueryClient : IQuerys<SqlCommand, SqlDataReader, SqlParameter, IClient, IEnumerable<string>>{}
