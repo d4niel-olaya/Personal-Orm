@@ -17,18 +17,18 @@ public interface IRead<T>
 
 public  interface IDelete<T>
 {
-    public T Deleted();
+    public T Deleted(T entity);
 }
 
 public interface IUpdate<T>
 {
-    public T Update();
+    public T Update(T entity);
 }
 
 
 public interface ICreate<T>
 {
-    public T Create();
+    public T Create(T entity);
 }
 
 public interface ISqlRaw
